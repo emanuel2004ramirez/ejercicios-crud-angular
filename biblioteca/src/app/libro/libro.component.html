@@ -1,1 +1,21 @@
-<p>libro works!</p>
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Código</th>
+      <th>Título</th>
+      <th>Autor</th>
+      <th>Año</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (libro of libros; track libro.id) {
+      <tr>
+      <td>{{ libro.id }}</td>
+      <td>{{ libro.codigo }}</td>
+      <td>{{ libro.titulo }}</td>
+      <td>{{ libro.autor }}</td>
+      <td>{{ libro.anio }}</td>
+    </tr>
+}
+  </tbody>
