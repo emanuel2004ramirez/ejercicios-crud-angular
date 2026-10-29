@@ -6,6 +6,7 @@
       <th>Título</th>
       <th>Autor</th>
       <th>Año</th>
+      <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +17,9 @@
       <td>{{ libro.titulo }}</td>
       <td>{{ libro.autor }}</td>
       <td>{{ libro.anio }}</td>
+      <td>
+        <button (click)="editar($index)">Editar</button>
+      </td>
     </tr>
 }
 

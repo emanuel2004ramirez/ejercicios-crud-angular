@@ -22,6 +22,7 @@ export class LibroComponent {
   titulo = '';
   autor = '';
   anio = 0;
+  indiceEditar = -1;
 
   libros: Libro[] = [];
   constructor(private router: Router) {
@@ -57,6 +58,7 @@ export class LibroComponent {
 }
 
 let nunuevoId = 1;
+if (this.indiceEditar === -1) {
 for (const libro of this.libros) {
   if (libro.id >= nunuevoId) {
     nunuevoId = libro.id + 1;
@@ -72,6 +74,12 @@ const nuevoLibro: Libro = {
 };
 
 this.libros.push(nuevoLibro);
+} else {
+  this.libros[this.indiceEditar].codigo = this.codigo;
+  this.libros[this.indiceEditar].titulo = this.titulo;
+  this.libros[this.indiceEditar].autor = this.autor;
+  this.libros[this.indiceEditar].anio = this.anio;
+}
 localStorage.setItem('librosBiblioteca', JSON.stringify(this.libros));
 this.limpiar();
 
@@ -85,6 +93,16 @@ alert('Libro guardado correctamente.');
   this.titulo = '';
   this.autor = '';
   this.anio = 0;
+  this.indiceEditar = -1;
 } 
+
+editar(indice: number) {
+  const libro = this.libros[indice];
+  this.codigo = libro.codigo;
+  this.titulo = libro.titulo;
+  this.autor = libro.autor;
+  this.anio = libro.anio;
+  this.indiceEditar = indice; 
+}
 }
 
