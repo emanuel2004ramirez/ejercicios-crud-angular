@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import {FormsModule} from '@angular/forms';
 
 interface Libro {
   id: number;
@@ -11,12 +12,16 @@ interface Libro {
 }
 
 @Component({
-  imports: [],
+  imports: [FormsModule],
   selector: 'app-libro',
   styleUrl: './libro.component.css',
   templateUrl: './libro.component.html',
 })
 export class LibroComponent {
+  codigo = '';
+  titulo = '';
+  autor = '';
+  anio = 0;
 
   libros: Libro[] = [];
   constructor(private router: Router) {
@@ -39,4 +44,47 @@ export class LibroComponent {
     }
 
   }
+
+
+  guardar() {
+    if ( !this.codigo ||    !this.titulo || !this.autor || 
+    !Number.isInteger(this.anio) ||
+    this.anio < 1000 ||
+    this.anio > 9999
+)  {
+    alert('Por favor, complete todos los campos correctamente.');
+    return;
 }
+
+let nunuevoId = 1;
+for (const libro of this.libros) {
+  if (libro.id >= nunuevoId) {
+    nunuevoId = libro.id + 1;
+  }
+}
+
+const nuevoLibro: Libro = {
+  id: nunuevoId,
+  codigo: this.codigo,
+  titulo: this.titulo,
+  autor: this.autor,
+  anio: this.anio
+};
+
+this.libros.push(nuevoLibro);
+localStorage.setItem('librosBiblioteca', JSON.stringify(this.libros));
+this.limpiar();
+
+alert('Libro guardado correctamente.');
+
+  }
+
+
+  limpiar() {
+  this.codigo = '';
+  this.titulo = '';
+  this.autor = '';
+  this.anio = 0;
+} 
+}
+
