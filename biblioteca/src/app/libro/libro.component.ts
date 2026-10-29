@@ -104,5 +104,14 @@ editar(indice: number) {
   this.anio = libro.anio;
   this.indiceEditar = indice; 
 }
+
+eliminar(indice: number) {
+  if (confirm('¿Está seguro de que desea eliminar este libro?')) {
+    this.libros.splice(indice, 1);
+    localStorage.setItem('librosBiblioteca', JSON.stringify(this.libros));
+    alert('Libro eliminado correctamente.');
+    this.limpiar();
+  }
+}
 }
 
