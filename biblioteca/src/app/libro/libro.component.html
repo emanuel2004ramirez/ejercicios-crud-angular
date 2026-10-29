@@ -1,3 +1,4 @@
+<p>Total De Libros registrados {{ libros.length}}</p>
 <table border="1">
   <thead>
     <tr>
@@ -22,7 +23,14 @@
         <button (click)="eliminar($index)">Eliminar</button>
       </td>
     </tr>
-}
+  }
+    @empty {
+      <tr>
+        <td colspan="6">No hay libros registrados</td>
+      </tr>
+    }
+    
+
 
   </tbody>
 </table>
@@ -41,4 +49,11 @@
     <input type="number" id="anio" [(ngModel)]="anio" name="anio" required>
     <br>
     <button type="submit">Agregar</button>
+    <button type="button" (click)="limpiar()">
+  Cancelar
+</button>
   </form>
+
+  <button type="button" (click)="cerrarSesion()">
+  Cerrar sesión
+</button>

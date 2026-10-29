@@ -48,7 +48,7 @@ export class LibroComponent {
 
 
   guardar() {
-    if ( !this.codigo ||    !this.titulo || !this.autor || 
+    if (!this.codigo.trim() || !this.titulo.trim() || !this.autor.trim() || 
     !Number.isInteger(this.anio) ||
     this.anio < 1000 ||
     this.anio > 9999
@@ -112,6 +112,11 @@ eliminar(indice: number) {
     alert('Libro eliminado correctamente.');
     this.limpiar();
   }
+}
+
+cerrarSesion() {
+  localStorage.removeItem('sesionBiblioteca');
+  this.router.navigate(['/login']);
 }
 }
 
