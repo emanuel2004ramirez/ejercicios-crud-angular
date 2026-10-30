@@ -1,0 +1,18 @@
+<main>
+  <h1>Iniciar sesión en tienda</h1>
+  <p>Acceso de práctica con datos ficticios.</p>
+
+  <form (ngSubmit)="iniciarSesion()" #loginForm="ngForm">
+    <p>
+      <label for="usuario">Usuario</label><br>
+      <input id="usuario" name="usuario" type="text" [(ngModel)]="usuario"
+        required autocomplete="username">
+    </p>
+    <p>
+      <label for="clave">Contraseña</label><br>
+      <input id="clave" name="clave" type="password" [(ngModel)]="clave"
+        required autocomplete="current-password">
+    </p>
+    <button type="submit" [disabled]="loginForm.invalid">Iniciar sesión</button>
+  </form>
+</main>
