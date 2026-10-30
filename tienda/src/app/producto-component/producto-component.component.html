@@ -1,5 +1,26 @@
 <main>
   <h1>Productos</h1>
+  <form #productoForm="ngForm" (ngSubmit)="crearProducto(productoForm)">
+    <p>
+      <label for="codigo">Código</label><br>
+      <input id="codigo" name="codigo" type="text" [(ngModel)]="codigo" required>
+    </p>
+    <p>
+      <label for="nombre">Nombre</label><br>
+      <input id="nombre" name="nombre" type="text" [(ngModel)]="nombre" required>
+    </p>
+    <p>
+      <label for="precio">Precio en lempiras</label><br>
+      <input id="precio" name="precio" type="number" step="any" [(ngModel)]="precio" required>
+    </p>
+    <p>
+      <label for="existencias">Existencias</label><br>
+      <input id="existencias" name="existencias" type="number" min="0" step="1"
+        [(ngModel)]="existencias" required>
+    </p>
+    <button type="submit">Crear producto</button>
+  </form>
+
   <p>Total de registros: {{ productos.length }}</p>
 
   @if (productos.length === 0) {
