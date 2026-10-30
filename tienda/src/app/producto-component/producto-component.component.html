@@ -1,5 +1,31 @@
 <main>
-  <h1>Productos de la tienda</h1>
-  <p>Bienvenido, vendedor.</p>
+  <h1>Productos</h1>
+  <p>Total de registros: {{ productos.length }}</p>
+
+  @if (productos.length === 0) {
+    <p>No hay productos registrados.</p>
+  }
+    <table border="1">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Código</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Precio (lempiras)</th>
+          <th scope="col">Existencias</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (producto of productos; track producto.id) {
+          <tr>
+            <td>{{ producto.id }}</td>
+            <td>{{ producto.codigo }}</td>
+            <td>{{ producto.nombre }}</td>
+            <td>L {{ producto.precio | number:'1.2-2' }}</td>
+            <td>{{ producto.existencias }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
   <button type="button" (click)="cerrarSesion()">Cerrar sesión</button>
 </main>
