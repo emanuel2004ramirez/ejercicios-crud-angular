@@ -40,13 +40,50 @@ ngOnInit(){
 
 }
 
+//READ
+
 ReadMascotas(){
-  const mascotasGuardadas = localStorage.getItem('registrosEstudiantes');
+  const mascotasGuardadas = localStorage.getItem('registrosMascotas');
   if(mascotasGuardadas){
     this.mascotas = JSON.parse(mascotasGuardadas);
   }
 }
 
+//CREATE
+create(){
+  if(!this.nombre.trim() || !this.especie.trim() || this.edad < 0 || !this.propietario.trim()){
+    alert('Por favor igresar los campos correctamente')
+    return;
+  }
+  //Generar id
+  const id = this.mascotas.length + 1;
+
+  //Agregar nueva mascota
+  this.mascotas.push({
+    id,
+    nombre: this.nombre,
+    especie: this.especie,
+    edad: this.edad,
+    propietario: this.propietario
+  })
+
+  localStorage.setItem('registrosMascotas', JSON.stringify(this.mascotas));
+  this.limpiar();
+
+}
+//UPDATE
+//DELETE
+
+//Limpiar
+limpiar(){
+
+this.nombre = '';
+this.especie = '' ;
+this.edad = 0;
+this.propietario = '';
+
+
+}
 
 
 }

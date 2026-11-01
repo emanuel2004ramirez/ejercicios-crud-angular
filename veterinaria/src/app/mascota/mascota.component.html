@@ -1,3 +1,20 @@
+<form (ngSubmit)="create()">
+    <label>Nombre</label>
+    <input name="nombre" [(ngModel)]="nombre">
+    <label>Especie</label>'
+    <input name="espeie" [(ngModel)]="especie">
+    <label>Edad</label>
+    <input type="number" name="edad" [(ngModel)]="edad">
+    <label>Propietario</label>
+    <input name="propietario" [(ngModel)]="propietario">
+
+
+<button type="submit">Enviar</button>
+
+
+</form>
+<button type="button" (click)="limpiar()">Cancelar</button>
+
 <table border="4">  
     <thead>
         <th>ID</th>
