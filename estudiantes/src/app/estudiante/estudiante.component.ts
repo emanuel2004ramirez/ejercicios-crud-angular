@@ -19,6 +19,7 @@ interface Estudiante {
 export class EstudianteComponent {
 
   constructor(private router: Router) {}
+  indiceEditar = -1;
   estudiantes: Estudiante[] = [];
   cuenta: string = '';
   nombre: string = '';
@@ -42,6 +43,8 @@ export class EstudianteComponent {
       return;
     }
 
+    //CREATE
+    if (this.indiceEditar === -1) {
     //generar id automático
     const id = this.estudiantes.length > 0 ? this.estudiantes[this.estudiantes.length - 1].id + 1 : 1;
     //Agregar un nuevo estudiante
@@ -56,7 +59,41 @@ export class EstudianteComponent {
     // Guardar los estudiantes en el almacenamiento local
     localStorage.setItem('registrosEstudiantes', JSON.stringify(this.estudiantes));
 
+    this.limpiar();
+  } else {
+    //UPDATE
+    this.estudiantes[this.indiceEditar].cuenta = this.cuenta;
+    this.estudiantes[this.indiceEditar].nombre = this.nombre;
+    this.estudiantes[this.indiceEditar].carrera = this.carrera;
+    this.estudiantes[this.indiceEditar].fechaIngreso = this.fechaIngreso;
+
+    // Guardar los estudiantes actualizados en el almacenamiento local
+    localStorage.setItem('registrosEstudiantes', JSON.stringify(this.estudiantes));
+    this.limpiar();
   }
+
+  }
+
+  editarEstudiante(indice: number) {
+    const estudiante = this.estudiantes[indice];
+    this.cuenta = estudiante.cuenta;
+    this.nombre = estudiante.nombre;
+    this.carrera = estudiante.carrera;
+    this.fechaIngreso = estudiante.fechaIngreso;
+    this.indiceEditar = indice;
+  }
+
+  //Metodo para limpiar pantalla
+  limpiar() {
+    this.cuenta = '';
+    this.nombre = '';
+    this.carrera = '';
+    this.fechaIngreso = '';
+    this.indiceEditar = -1;
+  }
+
+  //DELETE
+
  
 
 

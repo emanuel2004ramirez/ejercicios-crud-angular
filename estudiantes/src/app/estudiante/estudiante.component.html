@@ -13,6 +13,7 @@
     <input type="date" id="fechaIngreso" name="fechaIngreso" [(ngModel)]="fechaIngreso" required>
     <br>
     <button type="submit">Guardar</button>
+    <button type="button" (click)="limpiar()">Limpiar</button>
 
 </form>
 <table border="3">
@@ -23,6 +24,7 @@
       <th>Nombre</th>
       <th>Carrera</th>
       <th>Fecha de Ingreso</th>
+      <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -33,6 +35,10 @@
       <td>{{ estudiante.nombre }}</td>
       <td>{{ estudiante.carrera }}</td>
       <td>{{ estudiante.fechaIngreso }}</td>
+
+        <td>
+            <button (click)="editarEstudiante($index)">Editar</button>
+            
 
     </tr>
 
