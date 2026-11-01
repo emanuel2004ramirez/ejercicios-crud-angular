@@ -93,7 +93,14 @@ update(indice: number){
 }
 //DELETE
 
+delete(indice:number){
+  if(confirm("Estas seguro de eliminar esta mascota?")){
+    this.mascotas.splice(indice, 1);
+    localStorage.setItem('registrosMascotas', JSON.stringify(this.mascotas));
+    this.limpiar();
 
+  }
+}
 
 //Limpiar
 limpiar(){
