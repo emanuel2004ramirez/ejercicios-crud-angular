@@ -28,6 +28,7 @@ nombre: string = '';
 especie: string = '' ;
 edad: number = 0;
 propietario: string = '';
+indiceEditar = -1;
 
 ngOnInit(){
   if (!localStorage.getItem('sesionVeterinaria')){
@@ -55,6 +56,9 @@ create(){
     alert('Por favor igresar los campos correctamente')
     return;
   }
+   
+
+  if(this.indiceEditar === -1){
   //Generar id
   const id = this.mascotas.length + 1;
 
@@ -66,13 +70,30 @@ create(){
     edad: this.edad,
     propietario: this.propietario
   })
+}else {
+  this.mascotas[this.indiceEditar].nombre = this.nombre;
+  this.mascotas[this.indiceEditar].especie = this.especie;
+  this.mascotas[this.indiceEditar].edad = this.edad;
+  this.mascotas[this.indiceEditar].propietario = this.propietario;
+}
 
   localStorage.setItem('registrosMascotas', JSON.stringify(this.mascotas));
   this.limpiar();
 
 }
 //UPDATE
+
+update(indice: number){
+  const mascotas = this.mascotas[indice];
+  this.nombre = mascotas.nombre;
+  this.especie = mascotas.especie;
+  this.edad = mascotas.edad;
+  this.propietario = mascotas.propietario;
+  this.indiceEditar = indice;
+}
 //DELETE
+
+
 
 //Limpiar
 limpiar(){

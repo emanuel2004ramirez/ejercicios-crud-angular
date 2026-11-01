@@ -22,6 +22,7 @@
         <th>Especie</th>
         <th>Edad</th>
         <th>Propietario</th>
+        <th>Acciones</th>
     </thead>
     <tbody>
         @for (mascota of mascotas; track mascota.id){
@@ -31,6 +32,10 @@
                 <td>{{mascota.especie}}</td>
                 <td>{{mascota.edad}}</td>
                 <td>{{mascota.propietario}}</td>
+                <td>
+                    <button type="button" (click)="update($index)">Editar</button>
+
+                </td>
             </tr>
 
         } @empty { 
@@ -41,3 +46,4 @@
 
 </table>
 <p>Total de mascotas registradas: {{mascotas.length}}</p>
+
