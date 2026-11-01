@@ -1,3 +1,4 @@
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -93,6 +94,15 @@ export class EstudianteComponent {
   }
 
   //DELETE
+  eliminarEstudiante(indice:number){
+    if(confirm("Estas seguro que quieres elimianr a este estudiante")){
+      this.estudiantes.splice(indice,1);
+      localStorage.setItem('registroEstudiantes', JSON.stringify(this.estudiantes));
+      this.limpiar;
+
+
+    }
+  }
 
  
 
