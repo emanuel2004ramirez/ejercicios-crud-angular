@@ -27,6 +27,10 @@ export class EstudianteComponent {
   carrera: string = '';
   fechaIngreso: string = '';
   ngOnInit() {
+    if (!localStorage.getItem('sesionEstudiante')) {
+      this.router.navigate(['/login']);
+      return;
+    }
     this.cargarEstudiantes();
   }
 
@@ -102,6 +106,12 @@ export class EstudianteComponent {
 
 
     }
+  }
+
+  //cerrar sesion
+  cerrarSesion() {
+    localStorage.removeItem('sesionEstudiante');
+    this.router.navigate(['/login']);
   }
 
  
