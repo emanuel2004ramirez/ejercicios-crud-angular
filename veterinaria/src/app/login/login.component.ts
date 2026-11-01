@@ -18,13 +18,15 @@ export class LoginComponent {
 
     if(  this.usuario === 'veterinario' && this.clave === 'mascotas123'){
       this.router.navigate(['/mascota']);
-      localStorage.setItem('sesionVeternaria', 'si');
+      localStorage.setItem('sesionVeterinaria', 'si');
 
 
     } else {
 
       alert('Usuario o clave incorrecta');
     }
+
+    
 
 
   }

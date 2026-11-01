@@ -1,1 +1,26 @@
-<p>mascota works!</p>
+<table border="4">  
+    <thead>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Especie</th>
+        <th>Edad</th>
+        <th>Propietario</th>
+    </thead>
+    <tbody>
+        @for (mascota of mascotas; track mascota.id){
+            <tr>
+                <td>{{mascota.id}}</td>
+                <td>{{mascota.nombre}}</td>
+                <td>{{mascota.especie}}</td>
+                <td>{{mascota.edad}}</td>
+                <td>{{mascota.propietario}}</td>
+            </tr>
+
+        } @empty { 
+            <h3>No hay mascotas registrardas</h3>
+        }
+        
+    </tbody>
+
+</table>
+<p>Total de mascotas registradas: {{mascotas.length}}</p>
