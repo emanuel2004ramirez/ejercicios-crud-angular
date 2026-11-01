@@ -47,7 +47,10 @@
             <td>{{ producto.nombre }}</td>
             <td>L {{ producto.precio | number:'1.2-2' }}</td>
             <td>{{ producto.existencias }}</td>
-            <td><button type="button" (click)="editar($index)">Editar</button></td>
+            <td>
+              <button type="button" (click)="editar($index)">Editar</button>
+              <button type="button" (click)="eliminar($index, productoForm)">Eliminar</button>
+            </td>
           </tr>
         }
       </tbody>

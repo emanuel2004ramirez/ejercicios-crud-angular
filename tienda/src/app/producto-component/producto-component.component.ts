@@ -94,6 +94,15 @@ export class ProductoComponentComponent implements OnInit {
     this.indiceEditar = -1;
   }
 
+  eliminar(indice: number, formulario: NgForm): void {
+    if (confirm('¿Está seguro de que desea eliminar este producto?')) {
+      this.productos.splice(indice, 1);
+      localStorage.setItem('productosTienda', JSON.stringify(this.productos));
+      alert('Producto eliminado correctamente.');
+      this.limpiar(formulario);
+    }
+  }
+
   cerrarSesion(): void {
     localStorage.removeItem('sesionTienda');
     this.router.navigate(['/login']);
