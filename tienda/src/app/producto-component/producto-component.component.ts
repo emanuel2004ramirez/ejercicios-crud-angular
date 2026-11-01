@@ -23,6 +23,7 @@ export class ProductoComponentComponent implements OnInit {
   nombre: string = '';
   precio: number | null = null;
   existencias: number | null = null;
+  indiceEditar = -1;
 
   constructor(private router: Router) {}
 
@@ -45,7 +46,7 @@ export class ProductoComponentComponent implements OnInit {
     }
   }
 
-  crearProducto(formulario: NgForm): void {
+  guardar(formulario: NgForm): void {
     if (!this.codigo.trim() || !this.nombre.trim()) {
       alert('El código y el nombre son obligatorios.');
       return;
@@ -59,16 +60,38 @@ export class ProductoComponentComponent implements OnInit {
       return;
     }
 
-    const id = this.productos.reduce((mayor, producto) => Math.max(mayor, producto.id), 0) + 1;
-    this.productos.push({
-      id,
-      codigo: this.codigo.trim(),
-      nombre: this.nombre.trim(),
-      precio: this.precio,
-      existencias: this.existencias,
-    });
+    if (this.indiceEditar === -1) {
+      const id = this.productos.reduce((mayor, producto) => Math.max(mayor, producto.id), 0) + 1;
+      this.productos.push({
+        id,
+        codigo: this.codigo.trim(),
+        nombre: this.nombre.trim(),
+        precio: this.precio,
+        existencias: this.existencias,
+      });
+    } else {
+      const producto = this.productos[this.indiceEditar];
+      producto.codigo = this.codigo.trim();
+      producto.nombre = this.nombre.trim();
+      producto.precio = this.precio;
+      producto.existencias = this.existencias;
+    }
     localStorage.setItem('productosTienda', JSON.stringify(this.productos));
+    this.limpiar(formulario);
+  }
+
+  editar(indice: number): void {
+    const producto = this.productos[indice];
+    this.codigo = producto.codigo;
+    this.nombre = producto.nombre;
+    this.precio = producto.precio;
+    this.existencias = producto.existencias;
+    this.indiceEditar = indice;
+  }
+
+  limpiar(formulario: NgForm): void {
     formulario.resetForm({ codigo: '', nombre: '', precio: null, existencias: null });
+    this.indiceEditar = -1;
   }
 
   cerrarSesion(): void {

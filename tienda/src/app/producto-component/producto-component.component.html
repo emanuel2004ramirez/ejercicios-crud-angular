@@ -1,6 +1,7 @@
 <main>
   <h1>Productos</h1>
-  <form #productoForm="ngForm" (ngSubmit)="crearProducto(productoForm)">
+  <h3>{{ indiceEditar === -1 ? 'Agregar producto' : 'Editar producto' }}</h3>
+  <form #productoForm="ngForm" (ngSubmit)="guardar(productoForm)">
     <p>
       <label for="codigo">Código</label><br>
       <input id="codigo" name="codigo" type="text" [(ngModel)]="codigo" required>
@@ -18,7 +19,8 @@
       <input id="existencias" name="existencias" type="number" min="0" step="1"
         [(ngModel)]="existencias" required>
     </p>
-    <button type="submit">Crear producto</button>
+    <button type="submit">{{ indiceEditar === -1 ? 'Crear producto' : 'Actualizar' }}</button>
+    <button type="button" (click)="limpiar(productoForm)">Cancelar</button>
   </form>
 
   <p>Total de registros: {{ productos.length }}</p>
@@ -34,6 +36,7 @@
           <th scope="col">Nombre</th>
           <th scope="col">Precio (lempiras)</th>
           <th scope="col">Existencias</th>
+          <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -44,6 +47,7 @@
             <td>{{ producto.nombre }}</td>
             <td>L {{ producto.precio | number:'1.2-2' }}</td>
             <td>{{ producto.existencias }}</td>
+            <td><button type="button" (click)="editar($index)">Editar</button></td>
           </tr>
         }
       </tbody>
