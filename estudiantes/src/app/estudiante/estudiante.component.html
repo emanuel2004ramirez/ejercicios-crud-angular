@@ -1,4 +1,20 @@
 <h2>Registro de Estudiantes</h2>
+<form (ngSubmit) ="guardarEstudiantes()">
+    <label for="cuenta">Cuenta:</label>
+    <input type="text" id="cuenta" name="cuenta" [(ngModel)]="cuenta" required>
+    <br>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" [(ngModel)]="nombre" required>
+    <br>
+    <label for="carrera">Carrera:</label>
+    <input type="text" id="carrera" name="carrera" [(ngModel)]="carrera" required>
+    <br>
+    <label for="fechaIngreso">Fecha de Ingreso:</label>
+    <input type="date" id="fechaIngreso" name="fechaIngreso" [(ngModel)]="fechaIngreso" required>
+    <br>
+    <button type="submit">Guardar</button>
+
+</form>
 <table border="3">
   <thead>
     <tr>
