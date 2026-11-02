@@ -113,5 +113,11 @@ this.propietario = '';
 
 }
 
+//Cerrar sesion
+cerrarSesion(){
+  localStorage.removeItem('sesionVeterinaria');
+  this.router.navigate(['/login']);
+}
+
 
 }
