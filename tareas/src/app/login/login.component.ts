@@ -16,7 +16,7 @@ export class LoginComponent {
   login() {
     if (this.usuario === 'usuario' && this.clave === 'tareas123') {
       alert('Inicio de sesión exitoso');
-      localStorage.setItem(' sesionTareas','si')
+      localStorage.setItem('sesionTareas','si')
       this.router.navigate(['/tareas']);
     } else {
       alert('Usuario o clave incorrectos');

@@ -1,1 +1,29 @@
-<p>tareas works!</p>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Estado</th>
+            <th>Fecha límite</th>
+            <th>Acciones</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @for (tarea of tareas; track  tarea.id) {
+        <tr>
+            <td>{{ tarea.id }}</td>
+            <td>{{ tarea.titulo }}</td>
+            <td>{{ tarea.descripcion }}</td>
+            <td>{{ tarea.completada ? 'Completada' : 'Pendiente' }}</td>
+            <td>{{ tarea.fechaLimite }}</td>
+            <td>
+                
+            </td>
+        </tr>
+    } @empty {
+        <p>No hay tareas disponibles. </p>
+    }
+    </tbody>
+</table>
