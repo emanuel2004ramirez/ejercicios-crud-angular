@@ -38,6 +38,7 @@
             <td>{{ tarea.fechaLimite }}</td>
             <td>
                 <button (click)="updateTarea($index)">Editar</button>
+                <button (click)="eliminarTarea($index)">Eliminar</button>
             </td>
         </tr>
     } @empty {

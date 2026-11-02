@@ -98,4 +98,11 @@ updateTarea(indice: number) {
     localStorage.removeItem('sesionTareas');
     this.router.navigate(['/login']);
   }
+
+  eliminarTarea(indice: number) {
+    if (confirm('¿Estás seguro de que deseas eliminar esta tarea?')) {
+      this.tareas.splice(indice, 1);
+      localStorage.setItem('agendaTareas', JSON.stringify(this.tareas));
+    }
+  }
 }
