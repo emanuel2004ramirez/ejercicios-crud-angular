@@ -26,6 +26,7 @@ export class TareasComponent {
   descripcion: string = '';
   fechaLimite: string = '';
   completada: boolean = false;
+  indiceEditar: number = -1;
 
  verTareas() {
   if (localStorage.getItem('sesionTareas') === 'si') {
@@ -44,18 +45,48 @@ ngOnInit() {
   this.verTareas();
 }
 
-  agregarTarea() {
-    const nuevaTarea: Tarea = {
-      id: this.tareas.length + 1,
+agregarTarea() {
+
+  // CREAR
+  if (this.indiceEditar === -1) {
+
+    const id = this.tareas.length > 0
+      ? this.tareas[this.tareas.length - 1].id + 1
+      : 1;
+
+    this.tareas.push({
+      id,
       titulo: this.titulo,
       descripcion: this.descripcion,
       fechaLimite: this.fechaLimite,
-      completada: this.completada,
-    };
-    this.tareas.push(nuevaTarea);
-    localStorage.setItem('agendaTareas', JSON.stringify(this.tareas));
-    this.limpiar();
+      completada: this.completada
+    });
+
+  } else {
+
+    // UPDATE
+    this.tareas[this.indiceEditar].titulo = this.titulo;
+    this.tareas[this.indiceEditar].descripcion = this.descripcion;
+    this.tareas[this.indiceEditar].fechaLimite = this.fechaLimite;
+    this.tareas[this.indiceEditar].completada = this.completada;
+
   }
+
+  // GUARDAR Y LIMPIAR
+  localStorage.setItem('agendaTareas', JSON.stringify(this.tareas));
+  this.limpiar();
+}
+
+updateTarea(indice: number) {
+  this.indiceEditar = indice;
+  const tarea = this.tareas[indice];
+  this.titulo = tarea.titulo;
+  this.descripcion = tarea.descripcion;
+  this.fechaLimite = tarea.fechaLimite;
+  this.completada = tarea.completada;
+}
+
+
   limpiar() {
     this.titulo = '';
     this.descripcion = '';
