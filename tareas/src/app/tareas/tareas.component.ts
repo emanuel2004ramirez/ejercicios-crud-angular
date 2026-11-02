@@ -43,10 +43,28 @@ export class TareasComponent {
 ngOnInit() {
   this.verTareas();
 }
+
+  agregarTarea() {
+    const nuevaTarea: Tarea = {
+      id: this.tareas.length + 1,
+      titulo: this.titulo,
+      descripcion: this.descripcion,
+      fechaLimite: this.fechaLimite,
+      completada: this.completada,
+    };
+    this.tareas.push(nuevaTarea);
+    localStorage.setItem('agendaTareas', JSON.stringify(this.tareas));
+    this.limpiar();
+  }
   limpiar() {
     this.titulo = '';
     this.descripcion = '';
     this.fechaLimite = '';
     this.completada = false;
+  }
+
+  cerrarSesion() {
+    localStorage.removeItem('sesionTareas');
+    this.router.navigate(['/login']);
   }
 }
